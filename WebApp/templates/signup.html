@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<title>Register as Instructor</title>
+
+	<style type="text/css">
+		input[type=text], select {
+		    width: 100%;
+		    vertical-align: center;
+		    padding: 12px 20px;
+		    margin: 8px 0;
+		    display: inline-block;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+		    box-sizing: border-box;
+		}
+
+		input[type=submit] {
+		    width: 100%;
+		    background-color: #4CAF50;
+		    color: white;
+		    padding: 14px 20px;
+		    margin: 8px 0;
+		    border: none;
+		    border-radius: 4px;
+		    cursor: pointer;
+		}
+
+		input[type=submit]:hover {
+		    background-color: #45a049;
+		}
+		.border {
+    		border-radius: 5px;
+    		background: rgba(255, 255, 255, .5); 
+    		margin: auto;
+		    width: 85%;
+		    border: 3px solid background: rgba(255, 255, 255, .5);
+    		padding: 70px;
+		}
+
+		.dropdown {
+			background-color: white;
+		    color: #888;
+		    font-size: 14px;
+		    border: none;
+		    cursor: pointer;
+		    position: relative;
+		    display: inline-block;
+		}
+
+		.dropdown-content {
+		    display: none;
+		    cursor: pointer;
+		    position: absolute;
+		    background-color: #f9f9f9;
+		    min-width: 160px;
+		    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		    z-index: 1;
+		}
+
+		.dropdown:hover .dropdown-content {
+		    display: block;
+		    cursor: pointer;
+		}
+
+		body{
+			background-image: url(edu.jpg);
+		}
+	</style>
+
+	<meta charset="UTF-8">
+	    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+	</head>
+
+	<body>
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header active">
+					<a class="navbar-brand" href="#">
+						REGISTER
+					</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="#">
+							<span class="glyphicon glyphicon-log-in"></span>
+							Login
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<form class="border">
+			<input type="text" name="username" placeholder="Username..">
+			<input type="text" name="password" placeholder="Password..">
+			<input type="text" name="confirm_password" placeholder="Confirm Password..">
+			<select class="dropdown" name="department">
+				<option class="dropdown-content" value="department">Choose Department..</option>
+			    <option class="dropdown-content" value="volvo">Volvo</option>
+			    <option class="dropdown-content" value="saab">Saab</option>
+			    <option class="dropdown-content" value="fiat">Fiat</option>
+			    <option class="dropdown-content" value="audi">Audi</option>
+			  </select>
+			<input type="submit" value="Register">
+		</form>
+
+	</body>
