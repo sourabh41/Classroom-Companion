@@ -52,6 +52,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'ClassroomCompanion.urls'
+APPEND_SLASH = False
 
 TEMPLATES = [
     {

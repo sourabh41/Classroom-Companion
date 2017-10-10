@@ -31,7 +31,6 @@ class Student(models.Model):
         ('EE', 'Electrical Engineering'),
         )
     branch = models.CharField(null = True,max_length = 2, choices = BRANCHES)
-    roll_no = models.CharField(null = True, max_length = 9)
     def __str__(self):
         return self.user.username
 

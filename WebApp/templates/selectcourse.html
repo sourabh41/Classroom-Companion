@@ -1,0 +1,14 @@
+
+
+<form action = "http://127.0.0.1:8000/prof/csv" method = "post">
+	{% csrf_token %}
+  <select name="code">
+  	{% for course in courses %}
+
+  	<option value ="{{ course.code }}"> {{ course.code }} </option>
+  	{% endfor %}
+  </select>
+  <br><br>
+  	<input type="file" accept=".csv" />
+  <input type="submit">
+</form>
