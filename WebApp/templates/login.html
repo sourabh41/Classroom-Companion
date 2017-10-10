@@ -2,7 +2,7 @@
 <html>
 	<head>
 
-		<title>Register as Instructor</title>
+		<title>Home Page</title>
 
 	<style type="text/css">
 		input[type=text], select {
@@ -38,32 +38,6 @@
 		    border: 3px solid background: rgba(255, 255, 255, .5);
     		padding: 70px;
 		}
-
-		.dropdown {
-			background-color: white;
-		    color: #888;
-		    font-size: 14px;
-		    border: none;
-		    cursor: pointer;
-		    position: relative;
-		    display: inline-block;
-		}
-
-		.dropdown-content {
-		    display: none;
-		    cursor: pointer;
-		    position: absolute;
-		    background-color: #f9f9f9;
-		    min-width: 160px;
-		    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-		    z-index: 1;
-		}
-
-		.dropdown:hover .dropdown-content {
-		    display: block;
-		    cursor: pointer;
-		}
-
 		body{
 			background-image: url(edu.jpg);
 		}
@@ -82,37 +56,44 @@
 			<div class="container-fluid">
 				<div class="navbar-header active">
 					<a class="navbar-brand" href="#">
-						REGISTER
+						HOME
 					</a>
 				</div>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
 						<a href="#">
-							<span class="glyphicon glyphicon-log-in"></span>
-							Login
+							<span class="glyphicon glyphicon-user"></span>
+							New? Signup Here!
 						</a>
 					</li>
 				</ul>
 			</div>
 		</nav>
 		<br><br><br><br><br><br><br><br><br><br><br><br><br>
-		{% block content %}
-  <form method="post">
-    {% csrf_token %}
-    {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% if field.help_text %}
-          <small style="color: grey">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
-    {% endfor %}
-    <button type="submit">Sign up</button>
-  </form>
-{% endblock %}
+            <form id="login-form" method="post" 
+                  action="{% url 'login' %}">
+                {% csrf_token %}
+                <table class="table">
+                    <tr>
+                        <td><label for="id_username">Username</label></td>
+                        <td><input id="id_username" name="username" 
+                                   type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="id_password">Password</label></td>
+                        <td><input id="id_password" name="password" 
+                                   type="password" class="form-control"></td>
+                    </tr>
+                </table>
+                {% if form.errors %}
+                    <p class=" label label-danger">
+                        Your username and password didn't match. 
+                        Please try again.
+                    </p>
+                {% endif %}
+
+                <input type="submit" value="Login" 
+                       class="btn btn-primary pull-right" />
+                <input type="hidden" name="next" value="{{ next }}" />
 
 	</body>

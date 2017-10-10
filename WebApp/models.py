@@ -17,13 +17,12 @@ class Instructor(models.Model):
         ('EE', 'Electrical Engineering'),
         )
     branch = models.CharField(null = True,max_length = 2, choices = BRANCHES)
-<<<<<<< HEAD
 
 
-=======
+
     def __str__(self):
         return self.user.username
->>>>>>> a1aa13f0571cc4c8010b88a3b3cdeaf2cf026181
+
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-<<<<<<< HEAD
 # Create your views here.
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
@@ -32,9 +31,3 @@ def login(request):
 	return render(request,'login.html',{})
 
 
-=======
-from django.shortcuts import render
-
-def home(request):
-	return render(request,'home.html',{})
->>>>>>> a1aa13f0571cc4c8010b88a3b3cdeaf2cf026181
