@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """ClassroomCompanion URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -19,4 +20,12 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^prof/', include('WebApp.urls')),
+=======
+from django.conf.urls import url
+from django.contrib import admin
+
+urlpatterns = [
+	url(r'^$', include('WebApp.urls')),
+    url(r'^admin/', admin.site.urls),
+>>>>>>> a1aa13f0571cc4c8010b88a3b3cdeaf2cf026181
 ]

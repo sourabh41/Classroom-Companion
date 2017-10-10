@@ -1,30 +1,8 @@
-<<<<<<< HEAD
-
-{% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% if field.help_text %}
-          <small style="color: grey">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
-    {% endfor %}
-    <button type="submit">Sign up</button>
-  </form>
-{% endblock %}
-=======
 <!DOCTYPE html>
 <html>
 	<head>
 
-		<title>Register as Instructor</title>
+		<title>Home Page</title>
 
 	<style type="text/css">
 		input[type=text], select {
@@ -60,32 +38,6 @@
 		    border: 3px solid background: rgba(255, 255, 255, .5);
     		padding: 70px;
 		}
-
-		.dropdown {
-			background-color: white;
-		    color: #888;
-		    font-size: 14px;
-		    border: none;
-		    cursor: pointer;
-		    position: relative;
-		    display: inline-block;
-		}
-
-		.dropdown-content {
-		    display: none;
-		    cursor: pointer;
-		    position: absolute;
-		    background-color: #f9f9f9;
-		    min-width: 160px;
-		    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-		    z-index: 1;
-		}
-
-		.dropdown:hover .dropdown-content {
-		    display: block;
-		    cursor: pointer;
-		}
-
 		body{
 			background-image: url(edu.jpg);
 		}
@@ -104,14 +56,14 @@
 			<div class="container-fluid">
 				<div class="navbar-header active">
 					<a class="navbar-brand" href="#">
-						REGISTER
+						HOME
 					</a>
 				</div>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
 						<a href="#">
-							<span class="glyphicon glyphicon-log-in"></span>
-							Login
+							<span class="glyphicon glyphicon-user"></span>
+							New? Signup Here!
 						</a>
 					</li>
 				</ul>
@@ -121,16 +73,7 @@
 		<form class="border">
 			<input type="text" name="username" placeholder="Username..">
 			<input type="text" name="password" placeholder="Password..">
-			<input type="text" name="confirm_password" placeholder="Confirm Password..">
-			<select class="dropdown" name="department">
-				<option class="dropdown-content" value="department">Choose Department..</option>
-			    <option class="dropdown-content" value="volvo">Volvo</option>
-			    <option class="dropdown-content" value="saab">Saab</option>
-			    <option class="dropdown-content" value="fiat">Fiat</option>
-			    <option class="dropdown-content" value="audi">Audi</option>
-			  </select>
-			<input type="submit" value="Register">
+			<input type="submit" value="Login">
 		</form>
 
 	</body>
->>>>>>> a1aa13f0571cc4c8010b88a3b3cdeaf2cf026181
