@@ -1,1 +1,114 @@
-<h1> Successful Logout </h1>
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<title>Home Page</title>
+
+	<style type="text/css">
+		input, select {
+		    width: 100%;
+		    vertical-align: center;
+		    padding: 12px 20px;
+		    margin: 8px 0;
+		    display: inline-block;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+		    box-sizing: border-box;
+		}
+		.button {
+		    background-color: white; /* Green */
+		    border: none;
+		    color: black;
+		    width: 100%;
+		    padding: 16px 32px;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 16px;
+		    margin: 4px 2px;
+		    -webkit-transition-duration: 0.4s; /* Safari */
+		    transition-duration: 0.4s;
+		    cursor: pointer;
+		    border: 2px solid #4CAF50;
+		    border-radius: 4px;
+		}
+		.button:hover {
+		    background-color: #4CAF50;
+		    color: white;
+		}
+
+		/*input[type=submit] {
+		    width: 100%;
+		    background-color: #4CAF50;
+		    color: white;
+		    padding: 14px 20px;
+		    margin: 8px 0;
+		    border: none;
+		    border-radius: 4px;
+		    cursor: pointer;
+		}
+
+		input[type=submit]:hover {
+		    background-color: #45a049;
+		}*/
+		.border {
+    		border-radius: 5px;
+    		background: rgba(255, 255, 255, .5); 
+    		margin: auto;
+		    width: 85%;
+		    border: 3px solid background: rgba(255, 255, 255, .5);
+    		padding: 70px;
+		}
+		body{
+			background-image: url(edu.jpg);
+		}
+	</style>
+
+	<meta charset="UTF-8">
+	    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+	</head>
+
+	<body>
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header active">
+					<a class="navbar-brand" href="#">
+						HOME
+					</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="#">
+							<span class="glyphicon glyphicon-user"></span>
+							New? Signup Here!
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<br><br><br><br><br><br>
+		<h3 style="color: red; align: center;">Successful Logout</h3>
+      	<br><br>
+            <form id="login-form" method="post" 
+                  action="{% url 'login' %}" class="border">
+                {% csrf_token %}
+                    <input type="text" name="username" placeholder="Username..">
+                    <br><br>
+                    <input type="text" name="password" placeholder="Password..">
+                    <br>
+                {% if form.errors %}
+                    <p class=" label label-danger">
+                        Your username and password didn't match. 
+                        Please try again.
+                    </p>
+                {% endif %}
+                <br>
+                <input type="submit" value="Login" 
+                       class="button" />
+                <input type="hidden" name="next" value="{{ next }}" />
+            </form>
+	</body>

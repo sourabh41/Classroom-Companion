@@ -5,7 +5,7 @@
 		<title>Register as Instructor</title>
 
 	<style type="text/css">
-		input[type=text], select {
+		input, select {
 		    width: 100%;
 		    vertical-align: center;
 		    padding: 12px 20px;
@@ -15,8 +15,7 @@
 		    border-radius: 4px;
 		    box-sizing: border-box;
 		}
-
-		input[type=submit] {
+		/*input[type=submit] {
 		    width: 100%;
 		    background-color: #4CAF50;
 		    color: white;
@@ -29,6 +28,27 @@
 
 		input[type=submit]:hover {
 		    background-color: #45a049;
+		}*/
+		.button {
+		    background-color: white; /* Green */
+		    border: none;
+		    color: black;
+		    width: 100%;
+		    padding: 16px 32px;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 16px;
+		    margin: 4px 2px;
+		    -webkit-transition-duration: 0.4s; /* Safari */
+		    transition-duration: 0.4s;
+		    cursor: pointer;
+		    border: 2px solid #4CAF50;
+		    border-radius: 4px;
+		}
+		.button:hover {
+		    background-color: #4CAF50;
+		    color: white;
 		}
 		.border {
     		border-radius: 5px;
@@ -40,13 +60,7 @@
 		}
 
 		.dropdown {
-			background-color: white;
-		    color: #888;
-		    font-size: 14px;
-		    border: none;
-		    cursor: pointer;
-		    position: relative;
-		    display: inline-block;
+			cursor: pointer;
 		}
 
 		.dropdown-content {
@@ -95,13 +109,13 @@
 				</ul>
 			</div>
 		</nav>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br>
 		{% block content %}
-  <form method="post">
+  <form method="post" class="border">
     {% csrf_token %}
     {% for field in form %}
       <p>
-        {{ field.label_tag }}<br>
+      	<br>
         {{ field }}
         {% if field.help_text %}
           <small style="color: grey">{{ field.help_text }}</small>
@@ -111,7 +125,7 @@
         {% endfor %}
       </p>
     {% endfor %}
-    <button type="submit">Sign up</button>
+    <input type="submit" value="Sign Up" class="button" />
   </form>
 {% endblock %}
 

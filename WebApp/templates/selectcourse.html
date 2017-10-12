@@ -1,6 +1,6 @@
 
 
-<form action = "http://127.0.0.1:8000/prof/csv" method = "post" enctype = "multipart/form-data">
+<form action = "http://127.0.0.1:8000/prof/csv" method = "post">
 	{% csrf_token %}
   <select name="code">
   	{% for course in courses %}
@@ -9,7 +9,6 @@
   	{% endfor %}
   </select>
   <br><br>
-  		<input type="file" name="students" id="file" class="input-file">
-		<button type="submit" style="background-color:#3F42F0" class="btn btn-info btn-file">Upload</button>
-
+  	<input type="file" accept=".csv" />
+  <input type="submit">
 </form>

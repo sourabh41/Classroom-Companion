@@ -1,0 +1,14 @@
+
+
+<form action = "http://127.0.0.1:8000/prof/students" method = "post" enctype = "multipart/form-data">
+	{% csrf_token %}
+  <select name="code">
+  	{% for course in courses %}
+
+  	<option value ="{{ course.code }}"> {{ course.code }} </option>
+  	{% endfor %}
+  </select>
+  <br><br>
+		<button type="submit" style="background-color:#3F42F0" class="btn btn-info btn-file">Submit</button>
+
+</form>

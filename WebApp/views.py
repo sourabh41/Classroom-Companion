@@ -61,7 +61,7 @@ def make_course(request):
 			credits = request.POST['credits']
 			newcourse = Course.objects.create(instructor = Instructor.objects.get(user = request.user), name = name, code = code, credits = credits)
 			newcourse.save()
-			return redirect('add_course')
+			return redirect('home')
 
 def add_students_to_course1(request):
 	if request.user.is_authenticated:
@@ -127,5 +127,23 @@ def course_view(request):
 			course = Course.objects.get(code = code)
 			polls = Poll.objects.filter(course = course)
 			quizzes = Quiz.objects.filter(course = course)
-			return render(request, 'course_view.html')  
+			students = Student.objects.filter(course = course)
+			print(students)
 
+def showstudents(request):
+	if request.user.is_authenticated:
+		ins = Instructor.objects.get(user = request.user)
+		return render(request, 'showstudents.html', {
+			'courses':Course.objects.filter(instructor = ins)
+			})
+
+def students(request):
+	if request.user.is_authenticated:
+		if request.method == 'POST':
+			ins = Instructor.objects.get(user = request.user)
+			code = request.POST['code']
+			course = Course.objects.get(code = code)
+			students = Student.objects.filter(course = course)  
+		return render(request, 'students.html', {
+			'students': students
+			})
