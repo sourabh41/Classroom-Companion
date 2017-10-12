@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^addcourse/$', views.add_course, name = 'addcourse'),
     url(r'^makecourse$', views.make_course, name = 'makecourse'),
     url(r'^addstudents/$', views.add_students_to_course1, name = 'addstudents'),
-    url(r'^csv$', views.add_students_to_course2, name = 'csvfile')
+    url(r'^csv$', views.add_students_to_course2, name = 'csvfile'),
+    url(r'^course/(?P<code>.*)$', views.course_view, name = 'courseview' )
 ]
 
