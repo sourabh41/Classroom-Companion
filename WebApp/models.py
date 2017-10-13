@@ -74,7 +74,7 @@ class Poll(models.Model):
     question = models.CharField(max_length = 200)
     date = models.DateField(null = True)
     options = models.TextField(null = True)
-    response = models.TextField(null = True)
+    responses = models.TextField(null = True)
     def __str__(self):
         return self.course.name + ' ' + str(self.date) + ' Poll '
     

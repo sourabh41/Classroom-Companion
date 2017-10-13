@@ -14,6 +14,8 @@ urlpatterns = [
     url(r'^csv$', views.add_students_to_course2, name = 'csvfile'),
     #url(r'^course/(?P<code>.*)$', views.course_view, name = 'courseview'),
     url(r'^showstudents$', views.showstudents, name = 'showstudents'),
-    url(r'^students$', views.students, name = 'students')
+    url(r'^students$', views.students, name = 'students'),
+    url(r'^makepoll/$', views.polls, name = 'makepoll'),
+    url(r'^poll$', views.makepoll, name = 'poll'),
 ]
 

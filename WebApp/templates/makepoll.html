@@ -1,0 +1,16 @@
+<form action = "http://127.0.0.1:8000/prof/poll" method = "post" enctype = "multipart/form-data">
+	{% csrf_token %}
+  <select name="code">
+  	{% for course in courses %}
+
+  	<option value ="{{ course.code }}"> {{ course.code }} </option>
+  	{% endfor %}
+  </select>
+    Question:<br>
+  <input type="text" name="question"><br>
+ 	Date:<br>
+  <input type="date" name="date"><br>
+  Options:<br>
+  <input type = "text" name="options"><br>
+  <button type="submit">Add Course</button>
+

@@ -119,16 +119,16 @@ def add_students_to_course2(request):
 		# 	reader = csv.reader(codecs.EncodedFile(csvfile, "utf-8"), delimiter=',', dialect=dialect)
 		# return HttpResponse(reader)
 
-def course_view(request):
-	if request.user.is_authenticated:
-		if request.method == 'POST':
-			ins = Instructor.objects.get(user = request.user)
-			code = request.POST['code']
-			course = Course.objects.get(code = code)
-			polls = Poll.objects.filter(course = course)
-			quizzes = Quiz.objects.filter(course = course)
-			students = Student.objects.filter(course = course)
-			print(students)
+# def course_view(request):
+# 	if request.user.is_authenticated:
+# 		if request.method == 'POST':
+# 			ins = Instructor.objects.get(user = request.user)
+# 			code = request.POST['code']
+# 			course = Course.objects.get(code = code)
+# 			polls = Poll.objects.filter(course = course)
+# 			quizzes = Quiz.objects.filter(course = course)
+# 			students = Student.objects.filter(course = course)
+# 			print(students)
 
 def showstudents(request):
 	if request.user.is_authenticated:
@@ -147,3 +147,26 @@ def students(request):
 		return render(request, 'students.html', {
 			'students': students
 			})
+
+
+def polls(request):
+	if request.user.is_authenticated:
+		ins = Instructor.objects.get(user = request.user)
+		return render(request, 'makepolls.html', {
+			'courses':Course.objects.filter(instructor = ins)
+			})
+
+def makepoll(request):
+	if request.user.is_authenticated:
+		if request.method == 'POST':
+			ins = Instructor.objects.get(user = request.user)
+			code = request.POST['code']
+			course = Course.objects.get(code = code)
+			question = request.POST['question']
+			date = request.POST['date']
+			options = request.POST['options']
+			poll = Poll.objects.create(course = course, question = question, date = date, options = options)
+			poll.save()
+		return redirect('home')
+	return HttpResponse('Not logged in')
+			
