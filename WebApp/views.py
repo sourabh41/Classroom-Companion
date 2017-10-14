@@ -149,14 +149,14 @@ def students(request):
 			})
 
 
-def polls(request):
+def makepoll(request):
 	if request.user.is_authenticated:
 		ins = Instructor.objects.get(user = request.user)
 		return render(request, 'makepolls.html', {
 			'courses':Course.objects.filter(instructor = ins)
 			})
 
-def makepoll(request):
+def poll(request):
 	if request.user.is_authenticated:
 		if request.method == 'POST':
 			ins = Instructor.objects.get(user = request.user)
@@ -169,4 +169,58 @@ def makepoll(request):
 			poll.save()
 		return redirect('home')
 	return HttpResponse('Not logged in')
-			
+
+def makefeedback(request):
+	if request.user.is_authenticated:
+		ins = Instructor.objects.get(user = request.user)
+		return render(request, 'makefeedback.html', {
+			'courses':Course.objects.filter(instructor = ins)
+			})
+
+def feedback(request):
+	if request.user.is_authenticated:
+		if request.method == 'POST':
+			code = request.POST['code']
+			course = Course.objects.get(code = code)
+			text = request.POST['text']
+			date = request.POST['date']
+			feedback = Feedback.objects.create(course = course, text = text, date = date)
+			feedback.save()
+			print("feedback")
+		return redirect('home')
+	return HttpResponse('Not Logged in')
+
+
+def makequiz(request):
+	if request.user.is_authenticated:
+		ins = Instructor.objects.get(user = request.user)
+		return render(request, 'makequiz.html', {
+			'courses':Course.objects.filter(instructor = ins)
+			})
+
+def quiz(request):
+	if request.user.is_authenticated:
+		if request.method == 'POST':
+			code= request.POST['code']
+			course = Course.objects.get(code = code)
+			number = int(request.POST['number'])
+			numq = int(request.POST['numq'])
+			quiz = Quiz.objects.create(course = course, number = number, noq = numq)
+			quiz.save()
+			return render(request, 'addquestions.html', {
+				'noq': range(numq),
+				})
+
+def addquestions(request, quiz_id):
+	if request.user.is_authenticated:
+		if request.method == 'POST':
+			quiz = request.POST['quiz']
+			for n in range(numq):
+				text = request.POST['q'+str(n+1)]
+				option1 = request.POST['a'+str(n+1)]
+				option2 = request.POST['b'+str(n+1)]
+				option3 = request.POST['c'+str(n+1)]
+				option4 = request.POST['d'+str(n+1)]
+				question = Question.objects.create(quiz = quiz, text = text, option_A = option1, option_B = option2, option_C = option3, option_D = option4)
+				question.save()
+			return redirect('home')

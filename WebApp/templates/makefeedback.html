@@ -1,0 +1,15 @@
+<form action = "http://127.0.0.1:8000/prof/feedback" method = "post" enctype = "multipart/form-data">
+	{% csrf_token %}
+  <select name="code">
+  	{% for course in courses %}
+
+  	<option value ="{{ course.code }}"> {{ course.code }} </option>
+  	{% endfor %}
+  </select>
+  <br>
+  Text for Feedback:<br>
+  <input type="text" name="text"><br>
+ 	Date:<br>
+  <input type="date" name="date"><br>
+  <button type="submit">Make Feedback</button>
+

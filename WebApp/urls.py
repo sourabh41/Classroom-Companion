@@ -15,7 +15,12 @@ urlpatterns = [
     #url(r'^course/(?P<code>.*)$', views.course_view, name = 'courseview'),
     url(r'^showstudents$', views.showstudents, name = 'showstudents'),
     url(r'^students$', views.students, name = 'students'),
-    url(r'^makepoll/$', views.polls, name = 'makepoll'),
-    url(r'^poll$', views.makepoll, name = 'poll'),
+    url(r'^makepoll/$', views.makepoll, name = 'makepoll'),
+    url(r'^poll$', views.poll, name = 'poll'),
+    url(r'^makefeedback$', views.makefeedback, name = 'makefeedback'),
+    url(r'^feedback$', views.feedback, name = 'feedback'),
+    url(r'^makequiz$', views.makequiz, name = 'makequiz'),
+    url(r'^quiz$', views.quiz, name = 'quiz'),
+    url(r'^addquestions$', views.addquestions, name = 'addquestions'),
 ]
 

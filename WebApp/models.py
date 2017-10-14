@@ -47,6 +47,7 @@ class Course(models.Model):
 class Quiz(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     number = models.IntegerField(null = True)
+    noq = models.IntegerField(null = True)
     
     def __str__(self):
         return self.course.name + ' Quiz ' + str(self.number)
@@ -64,8 +65,9 @@ class Question(models.Model):
 
 class Feedback(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    text = models.CharField(max_length = 1000)
+    text = models.TextField(null = True)
     date = models.DateField(null = True)
+    responses = models.TextField(null = True)
     def __str__(self):
         return self.course.name + ' ' + str(self.date) + ' Feedback '
 

@@ -1,0 +1,17 @@
+<form action = "http://127.0.0.1:8000/prof/addquestions" method = "post" enctype = "multipart/form-data">
+	{% csrf_token %}
+  {% for i in noq %}
+  <br>
+    Question {{i}} :<br>
+  <input type="text" name='q{{ i }}'><br>
+ 	Option 1:<br>
+  <input type="text" name='a{{ i }}' ><br>
+  Option 2:<br>
+  <input type="text" name='b{{ i }}' ><br>
+  Option 3:<br>
+  <input type="text" name='c{{ i }}' ><br>
+  Option 4:<br>
+  <input type="text" name='d{{ i }}' ><br><br><br>
+
+ {% endfor %}
+  <button type="submit">Add Questions</button>
