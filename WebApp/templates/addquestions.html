@@ -1,17 +1,70 @@
-<form action = "http://127.0.0.1:8000/prof/addquestions" method = "post" enctype = "multipart/form-data">
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+  <meta charset="UTF-8">
+      <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header active">
+          <a class="navbar-brand" href="{% url 'home' %}">
+            HOME
+          </a>
+        </div>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'home' %}">Courses
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        {% for course in courses %}
+                        <li> <a href = "{% url 'course_view' course.id %}"> {{ course.name }} </a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+          <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="{% url 'logout' %}">
+              <span class="glyphicon glyphicon-log-out"></span>
+              Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+<div align = "center">
+
+
+<form action = "http://localhost:8000/prof/addquestions/{{ quiz.id }}" method = "post" enctype = "multipart/form-data">
 	{% csrf_token %}
+  Quiz : {{ quiz.number }}
+  <br>
   {% for i in noq %}
   <br>
-    Question {{i}} :<br>
-  <input type="text" name='q{{ i }}'><br>
- 	Option 1:<br>
+    Question {{ i }} :
+  <input type="text" name='q{{ i }}'><br><br>
+ 	Option 1:
   <input type="text" name='a{{ i }}' ><br>
-  Option 2:<br>
+  Option 2:
   <input type="text" name='b{{ i }}' ><br>
-  Option 3:<br>
+  Option 3:
   <input type="text" name='c{{ i }}' ><br>
-  Option 4:<br>
-  <input type="text" name='d{{ i }}' ><br><br><br>
-
+  Option 4:
+  <input type="text" name='d{{ i }}' ><br>
+  Correct Option:
+  <select name = "co{{ i }}">
+    <option value="A">A</option>
+    <option value="B">B</option>
+    <option value="C">C</option>
+    <option value="D">D</option>
+  </select> 
+<br><br><br>
  {% endfor %}
   <button type="submit">Add Questions</button>
+
+</div>

@@ -1,11 +1,54 @@
 
-<form action = "http://127.0.0.1:8000/prof/makecourse" method = "post">
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+	<meta charset="UTF-8">
+	    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<body>
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header active">
+					<a class="navbar-brand" href="#">
+						HOME
+					</a>
+				</div>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'home' %}">Courses
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        {% for course in courses %}
+                        <li> <a href = "{% url 'course_view' course.id %}"> {{ course.name }} </a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="{% url 'logout' %}">
+							<span class="glyphicon glyphicon-log-out"></span>
+							Logout
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<br>
+
+<div align = "center">
+	<h3> Fill in the details for the course </h3> <br> <br>
+<form action = "http://localhost:8000/prof/makecourse" method = "post">
 	{% csrf_token %}
-  Name:<br>
-  <input type="text" name="name"><br>
-  Code:<br>
-  <input type="text" name="code"><br>
-  Credits:<br>
+  Name:
+  <input type="text" name="name"><br><br>
+  Code:
+  <input type="text" name="code"><br><br>
+  Credits:
   <input type = "text" name="credits"><br>
-  <button type="submit" style="background-color:#3F42F0; margin-top: 30px;">Add Course</button>
+  <button type="submit" style="margin-top: 30px;">Add Course</button>
 </form> 
+</div>
+</body>

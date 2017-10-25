@@ -59,10 +59,11 @@
 		    border: 3px solid background: rgba(255, 255, 255, .5);
     		padding: 70px;
 		}
-		body{
-			background-image: url(edu.jpg);
-		}
+
 	</style>
+		{% load static %}
+
+		<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
 
 	<meta charset="UTF-8">
 	    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
@@ -82,7 +83,7 @@
 				</div>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a href="#">
+						<a href="{% url 'signup' %}">
 							<span class="glyphicon glyphicon-user"></span>
 							New? Signup Here!
 						</a>
@@ -91,21 +92,15 @@
 			</div>
 		</nav>
 		<br><br><br><br><br><br>
-		<h3 style="color: red; align: center;">Successful Logout</h3>
+		<h3 style="color: red;" align = "center">Successful Logout</h3>
       	<br><br>
             <form id="login-form" method="post" 
-                  action="{% url 'login' %}" class="border">
+                  action="http://localhost:8000/prof/authlogin/" class="border">
                 {% csrf_token %}
                     <input type="text" name="username" placeholder="Username..">
                     <br><br>
-                    <input type="text" name="password" placeholder="Password..">
+                    <input type="password" name="password" placeholder="Password..">
                     <br>
-                {% if form.errors %}
-                    <p class=" label label-danger">
-                        Your username and password didn't match. 
-                        Please try again.
-                    </p>
-                {% endif %}
                 <br>
                 <input type="submit" value="Login" 
                        class="button" />

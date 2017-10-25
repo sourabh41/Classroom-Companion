@@ -38,11 +38,9 @@
 		</nav>
 
 <div align = "center">
-	<h3> List of all students enrolled in this course: </h3> <br>
+	<h3> There are no responses to this field yet </h3> <br>
 <ul>
-{% for student in students %}
-<li> {{ student.user.username }}: {{ student.user.first_name }} {{ student.user.last_name }} </li>
-{% endfor %}
+<a href = "{% url 'course_view' course.id %}"> Back to course </a> 
 
 </ul>
 </div>

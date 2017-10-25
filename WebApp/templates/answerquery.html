@@ -1,3 +1,4 @@
+
 {% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
@@ -6,12 +7,11 @@
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-
-		<nav class="navbar navbar-inverse">
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header active">
-					<a class="navbar-brand" href="{% url 'home' %}">
+					<a class="navbar-brand" href="#">
 						HOME
 					</a>
 				</div>
@@ -36,13 +36,26 @@
 				</ul>
 			</div>
 		</nav>
+		<br>
+<div class = "row" style = "margin-top: 70px">
 
-<div align = "center">
-	<h3> List of all students enrolled in this course: </h3> <br>
-<ul>
-{% for student in students %}
-<li> {{ student.user.username }}: {{ student.user.first_name }} {{ student.user.last_name }} </li>
-{% endfor %}
-
-</ul>
+<div class = "col-sm-9">
+	<div align = "center">
+	{% for query in queries %}
+		{{ query }}
+		<br><br>
+	{% endfor %}
 </div>
+</div>
+<div class = "col-sm-3">
+<form action = "http://localhost:8000/prof/savequery/{{ query.id }}" method = "post" enctype = "multipart/form-data">
+	{% csrf_token %}
+  <h3> Answer the query <br> {{ query_title }} </h3> <br>
+  Response:<br>
+  <input type="text" name="response"><br>
+  <button type="submit">Submit</button>
+</form> 
+<a href = "{% url 'course_view' query.course.id %}"> Back to Course </a>
+</div>
+</div>
+</body>

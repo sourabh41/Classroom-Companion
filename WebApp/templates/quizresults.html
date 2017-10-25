@@ -1,3 +1,4 @@
+
 {% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
@@ -6,8 +7,7 @@
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-
+	<body>
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header active">
@@ -27,22 +27,38 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-					<li>
-						<a href="{% url 'logout' %}">
-							<span class="glyphicon glyphicon-log-out"></span>
-							Logout
-						</a>
-					</li>
-				</ul>
+          <li>
+            <a href="{% url 'logout' %}">
+              <span class="glyphicon glyphicon-log-out"></span>
+              Logout
+            </a>
+          </li>
+        </ul>
 			</div>
 		</nav>
-
+		<br>
 <div align = "center">
-	<h3> List of all students enrolled in this course: </h3> <br>
-<ul>
-{% for student in students %}
-<li> {{ student.user.username }}: {{ student.user.first_name }} {{ student.user.last_name }} </li>
-{% endfor %}
 
-</ul>
+Quiz Number: {{ quiz.number }} <br>
+Number of Questions in the Quiz: {{ quiz.noq }}
+<br>
+
+<div class="container">            
+  <table class="table table-hover" width="20">
+    <thead>
+      <tr>
+        <th>Students</th>
+        <th>Correct Answers</th>
+      </tr>
+    </thead>
+    <tbody>
+    	{% for s, m in marks.items %}
+      <tr>
+        <td>{{ s }}</td>
+        <td>{{ m }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 </div>

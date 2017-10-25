@@ -38,11 +38,11 @@
 		</nav>
 
 <div align = "center">
-	<h3> List of all students enrolled in this course: </h3> <br>
-<ul>
-{% for student in students %}
-<li> {{ student.user.username }}: {{ student.user.first_name }} {{ student.user.last_name }} </li>
-{% endfor %}
 
+<h3> Select a quiz to delete </h3>
+<ul>
+{% for quiz in quizzes %}
+<li> <a href="{% url 'deletequiz' quiz.id %}"> {{ quiz.course }} Quiz {{ quiz.number }} </a> </li>
+{% endfor %}
 </ul>
 </div>

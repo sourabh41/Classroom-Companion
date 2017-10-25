@@ -27,22 +27,36 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-					<li>
-						<a href="{% url 'logout' %}">
-							<span class="glyphicon glyphicon-log-out"></span>
-							Logout
-						</a>
-					</li>
-				</ul>
+          <li>
+            <a href="{% url 'logout' %}">
+              <span class="glyphicon glyphicon-log-out"></span>
+              Logout
+            </a>
+          </li>
+        </ul>
 			</div>
 		</nav>
 
 <div align = "center">
-	<h3> List of all students enrolled in this course: </h3> <br>
-<ul>
-{% for student in students %}
-<li> {{ student.user.username }}: {{ student.user.first_name }} {{ student.user.last_name }} </li>
-{% endfor %}
 
-</ul>
+<h3> Feedback for the Course </h3>
+
+
+<div class="container">            
+  <table class="table table-hover" width="20">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Feedback</th>
+      </tr>
+    </thead>
+    <tbody>
+    	{% for s, r in feedback_list.items %}
+      <tr>
+        <td>{{ s }}</td>
+        <td>{{ r }} </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>

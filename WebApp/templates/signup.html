@@ -82,7 +82,8 @@
 			background-image: url(edu.jpg);
 		}
 	</style>
-
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 	<meta charset="UTF-8">
 	    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -101,7 +102,7 @@
 				</div>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a href="#">
+						<a href="{% url 'login' %}">
 							<span class="glyphicon glyphicon-log-in"></span>
 							Login
 						</a>

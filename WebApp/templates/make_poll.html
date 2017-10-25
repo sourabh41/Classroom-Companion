@@ -26,23 +26,30 @@
                     </ul>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-					<li>
-						<a href="{% url 'logout' %}">
-							<span class="glyphicon glyphicon-log-out"></span>
-							Logout
-						</a>
-					</li>
-				</ul>
+          <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="{% url 'logout' %}">
+              <span class="glyphicon glyphicon-log-out"></span>
+              Logout
+            </a>
+          </li>
+        </ul>
 			</div>
 		</nav>
 
 <div align = "center">
-	<h3> List of all students enrolled in this course: </h3> <br>
-<ul>
-{% for student in students %}
-<li> {{ student.user.username }}: {{ student.user.first_name }} {{ student.user.last_name }} </li>
-{% endfor %}
 
-</ul>
+
+<form action = "http://localhost:8000/prof/poll/{{ course.id }}" method = "post" enctype = "multipart/form-data">
+	{% csrf_token %}
+  <h3> {{ course }} </h3> <br>
+  Question:<br>
+  <input type="text" name="question"><br>
+ 	Date:<br>
+  <input type="date" name="date"><br>
+  Options:<br>
+  <textarea name = "options"></textarea>
+  <br>
+  <button type="submit">Make Poll</button>
+
 </div>

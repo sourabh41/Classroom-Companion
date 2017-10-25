@@ -25,7 +25,7 @@ SECRET_KEY = 'u$=2w%8cnj9s_jhkfbki(3#cd^!_^(s9q!2!%svq!+_9zdy(9c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.101', 'localhost']
 
 LOGIN_REDIRECT_URL = 'home'
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

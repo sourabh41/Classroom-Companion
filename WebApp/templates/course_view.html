@@ -1,0 +1,122 @@
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+	<meta charset="UTF-8">
+	    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header active">
+					<a class="navbar-brand" href="{% url 'home' %}">
+						HOME
+					</a>
+				</div>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'home' %}">Courses
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        {% for course in courses %}
+                        <li> <a href = "{% url 'course_view' course.id %}"> {{ course.name }} </a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="{% url 'logout' %}">
+							<span class="glyphicon glyphicon-log-out"></span>
+							Logout
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+<!-- <div class="row">
+	<div class="col-sm-3" style="margin-left: 50px ">
+				<h3> {{ course.name }} </h3>
+
+			<a href = "{% url 'showstudents' course.id %}"> Show Students in this Course </a>
+			<br>
+			<a href = "{% url 'addstudents' course.id %}"> Add Students to this Course </a>
+
+	</div>
+	<div class="col-sm-3" style="margin-top: 50px; margin-left: -50px"> <br>
+<h4> Quizzes </h4>
+<ul>
+
+	{% for quiz in quizzes %}
+	<li> <a href = "{% url 'quizresults' quiz.id %}"> Quiz {{ quiz.number }} </a> </li>
+	{% endfor %}
+</ul>
+
+<a href = "{% url 'makequiz' course.id %}"> Make a new quiz </a> <br>
+<a href = "{% url 'deletequizzes' course.id %}"> Delete a quiz </a>
+</div>
+<div class = "col-sm-3" style="margin-top: 50px; margin-left: -50px"><br>
+<h4> Polls </h4>
+<ul>
+	{% for poll in polls %}
+	<li> <a href = "{% url 'pollresults' poll.id %}"> Poll created on {{ poll.date }} </a> </li>
+	{% endfor %}
+</ul>
+
+<a href = "{% url 'make_poll' course.id %}"> Make a new poll </a> </li>
+</div>
+
+<div class = "col-sm-3" style="margin-top: 50px; margin-left: -50px"> <br>
+<h4> Feedbacks </h4>
+
+</div>
+</div>
+ -->
+<div align="center">
+    <h3> {{ course.name }} </h3>
+
+	<a href = "{% url 'showstudents' course.id %}"> Show Students in this Course </a>
+	<br>
+	<a href = "{% url 'addstudents' course.id %}"> Add Students to this Course </a>
+</div>
+<br><br>
+   <div class="row">
+    <div class="col-sm-3"><h4> Quizzes </h4>
+<ul>
+	{% for quiz in quizzes %}
+	<li> <a href = "{% url 'quizresults' quiz.id %}"> Quiz {{ quiz.number }} </a> </li>
+	{% endfor %}
+</ul>
+
+<a href = "{% url 'makequiz' course.id %}"> Make a new quiz </a> <br>
+<a href = "{% url 'deletequizzes' course.id %}"> Delete a quiz </a>
+</div>
+    <div class="col-sm-3">
+    	<h4> Polls </h4>
+<ul>
+	{% for poll in polls %}
+	<li> <a href = "{% url 'pollresults' poll.id %}"> {{ poll.question }} </a> </li>
+	{% endfor %}
+</ul>
+
+<a href = "{% url 'make_poll' course.id %}"> Make a new poll </a> <br>
+<a href = "{% url 'deletepolls' course.id %}"> Delete a poll </a>
+</div>
+   <div class="col-sm-3">
+   	<h4> Feedbacks </h4>
+   	<a href = "{% url 'viewfeedback' course.id %}"> View all feedbacks </a>
+   </div>
+    <div class="col-sm-3">
+   	<h4> Queries </h4>
+   	{% for query, query_title in query_titles.items %}
+   	<a href = "{% url 'answerquery' query.id %}"> {{ query_title }} </a> <br>
+   	{% endfor %}
+   </div>
+</div>
+
+</body>
+</html>

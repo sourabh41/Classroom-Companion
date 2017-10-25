@@ -40,14 +40,21 @@ class Course(models.Model):
     name = models.CharField(max_length = 200)
     code = models.CharField(max_length = 8)
     credits = models.IntegerField(null = True)
+    Feedback = models.TextField(null = True)
     
     def __str__(self):
     	return self.name
+
+class Query(models.Model):
+    course = models.ForeignKey(Course, on_delete = models.CASCADE, null = True)
+    queries = models.TextField(null = True)
 
 class Quiz(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     number = models.IntegerField(null = True)
     noq = models.IntegerField(null = True)
+    timeout = models.IntegerField(null = True)
+    responses = models.TextField(null = True)
     
     def __str__(self):
         return self.course.name + ' Quiz ' + str(self.number)
@@ -59,17 +66,13 @@ class Question(models.Model):
     option_B = models.CharField(max_length = 200, null = True)
     option_C = models.CharField(max_length = 200, null = True)
     option_D = models.CharField(max_length = 200, null = True)
+    OPTIONS = (
+        ('A', 'A'),('B','B'),('C','C'),('D','D')
+        )
+    correct_option = models.CharField(null = True, max_length = 1, choices = OPTIONS)
     response = models.TextField(null = True)
     def __str__(self):
-        return self.quiz.course.name + ' Quiz Question '
-
-class Feedback(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    text = models.TextField(null = True)
-    date = models.DateField(null = True)
-    responses = models.TextField(null = True)
-    def __str__(self):
-        return self.course.name + ' ' + str(self.date) + ' Feedback '
+        return self.quiz.course.name + ' Quiz ' + str(self.quiz.number) + ' Question'
 
 class Poll(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null = True)

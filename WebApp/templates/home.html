@@ -1,80 +1,115 @@
-<!DOCTYPE html>
 <html>
-	<head>
 
-		<title>Home Page</title>
+<head>
 
-	<style type="text/css">
-		input[type=text], select {
-		    width: 100%;
-		    vertical-align: center;
-		    padding: 12px 20px;
-		    margin: 8px 0;
-		    display: inline-block;
-		    border: 1px solid #ccc;
-		    border-radius: 4px;
-		    box-sizing: border-box;
-		}
+    {% load static %}
 
-		input[type=submit] {
-		    width: 100%;
-		    background-color: #4CAF50;
-		    color: white;
-		    padding: 14px 20px;
-		    margin: 8px 0;
-		    border: none;
-		    border-radius: 4px;
-		    cursor: pointer;
-		}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
 
-		input[type=submit]:hover {
-		    background-color: #45a049;
-		}
-		.border {
-    		border-radius: 5px;
-    		background: rgba(255, 255, 255, .5); 
-    		margin: auto;
-		    width: 85%;
-		    border: 3px solid background: rgba(255, 255, 255, .5);
-    		padding: 70px;
-		}
-		body{
-			background-image: url(edu.jpg);
-		}
-	</style>
+    <title>Home Page</title>
 
-	<meta charset="UTF-8">
-	    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        input[type=text],
+        select {
+            width: 100%;
+            vertical-align: center;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=submit] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+        .border {
+            border-radius: 5px;
+            background: rgba(255, 255, 255, .5);
+            margin: auto;
+            width: 85%;
+            border: 3px solid background: rgba(255, 255, 255, .5);
+            padding: 70px;
+        }
+        span.glyphicon-plus {
+            font-size: 2em;
+        }
+    </style>
 
-	</head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-	<body>
-		<nav class="navbar navbar-inverse">
-			<div class="container-fluid">
-				<div class="navbar-header active">
-					<a class="navbar-brand" href="#">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header active">
+                <a class="navbar-brand" href="{% url 'home' %}">
 						HOME
 					</a>
-				</div>
-				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<a href="#">
-							<span class="glyphicon glyphicon-user"></span>
-							New? Signup Here!
-						</a>
-					</li>
-				</ul>
-			</div>
-		</nav>
-		<br><br><br><br><br>
-			<h1 align="center">Welcome {{ instructor.first_name }} {{ instructor.last_name }}!</h1><br>
-			<p align = "center" >
-				{% for course in courses %}
-				{{course.name}} <br>
-				{% endfor %}
-			</p>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'home' %}">Courses
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        {% for course in courses %}
+                        <li> <a href = "{% url 'course_view' course.id %}"> {{ course.name }} </a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="{% url 'logout' %}">
+                            <span class="glyphicon glyphicon-log-out"></span>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+        </div>
+    </nav>
+    <br>
+    <h1 align="center">Welcome {{ instructor.first_name }} {{ instructor.last_name }}!</h1>
+    <br>
 
-	</body>
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            {% for course in courses %}
+            <a href="{% url 'course_view' course.id %}">
+                <div class="card">
+                        <div class="container" >
+                            <h4><b>{{ course.name }}</b></h4>
+                            <br> {{ course.code }} &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&emsp; &emsp; &emsp; &emsp; &emsp; Credits: {{ course.credits }}<br>
+                        </div>
+                </div>
+            </a>
+            <br> {% endfor %}
+            <a href="{% url 'add_course' instructor.id %}">
+                <div class="card">
+                    <div class="container">
+                        <h4><b> Add a Course </b></h4>
+                        <br> <span class="glyphicon glyphicon-plus"></span><br>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+
+</body>

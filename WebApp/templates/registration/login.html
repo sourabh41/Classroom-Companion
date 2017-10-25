@@ -59,10 +59,11 @@
 		    border: 3px solid background: rgba(255, 255, 255, .5);
     		padding: 70px;
 		}
-		body{
-			background-image: url(edu.jpg);
-		}
+
 	</style>
+	{% load static %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
 
 	<meta charset="UTF-8">
 	    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
@@ -82,13 +83,14 @@
 				</div>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a href="#">
-							<span class="glyphicon glyphicon-user"></span>
-							New? Signup Here!
+						<a href="{% url 'signup' %}">
+							<span class="glyphicon glyphicon-log-in"></span>
+							Signup
 						</a>
 					</li>
 				</ul>
 			</div>
+
 		</nav>
 		<br><br><br><br><br><br>
       	<br><br>
