@@ -1,0 +1,40 @@
+a {
+    color: green;
+}
+
+html,body {
+  height:100vh;  
+  max-width: 1500px;
+  margin: 0 auto;
+  padding-top: 00px;  
+}
+
+.navbar-custom {
+    color: #ff8f00 ;
+    background-color: #ff8f00 ;
+}
+body {
+    height: 100%;
+    background-image: url('images/loginbackground.jpg');
+    background-repeat: repeat-y;
+    background-size: cover;
+}
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 450px;
+    height: 100px;
+    color: #4CAF50;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+    padding: 2px 16px;
+    margin-left: -150px;
+}

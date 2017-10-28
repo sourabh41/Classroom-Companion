@@ -15,10 +15,13 @@ class Instructor(models.Model):
     BRANCHES = (
         ('CS','Computer Science and Engineering'),
         ('EE', 'Electrical Engineering'),
+        ('ME', 'Mechanical Engineering'),
+        ('MM', 'Metallurgical Engineering'),
+        ('AE', 'Aerospace Engineering'),
+        ('CE', 'Civil Engineering'),
+        ('CH', 'Chemical Engineering'),
         )
     branch = models.CharField(null = True,max_length = 2, choices = BRANCHES)
-
-
 
     def __str__(self):
         return self.user.username
@@ -29,6 +32,11 @@ class Student(models.Model):
     BRANCHES = (
         ('CS','Computer Science and Engineering'),
         ('EE', 'Electrical Engineering'),
+        ('ME', 'Mechanical Engineering'),
+        ('MM', 'Metallurgical Engineering'),
+        ('AE', 'Aerospace Engineering'),
+        ('CE', 'Civil Engineering'),
+        ('CH', 'Chemical Engineering'),
         )
     branch = models.CharField(null = True,max_length = 2, choices = BRANCHES)
     def __str__(self):

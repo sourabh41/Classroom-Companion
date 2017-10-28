@@ -349,10 +349,12 @@ def viewfeedback(request, course_id):
 	if request.user.is_authenticated:
 		course = Course.objects.get(id = course_id)
 		feedbacks = course.Feedback
-		try:
-			feedbacks = feedbacks.split('%')[1:]
-		except:
-			return HttpResponse("No feedbacks yet")
+		feedbacks = feedbacks.split('%')[1:]
+		if not feedbacks:
+			return render(request, 'noresponsesyet.html', {
+				'courses' : Course.objects.filter(instructor = Instructor.objects.get(user = request.user)),
+				'course' : course,
+				})
 		feedback_list = {}
 		for feedback in feedbacks:
 			feedback = feedback.split(': ')
